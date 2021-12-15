@@ -56,8 +56,12 @@ namespace Booking.Controllers
         }
 
 
-
-        // GET: api/Cars/5
+        /// <summary>
+        /// GET: api/telephone/2200223
+        /// </summary>
+        /// <param name="telephone"></param>
+        /// <returns> Sorted Sql query</returns>
+       
         [HttpGet("telephone/{telephone}", Name = "GetbyTelephone")]
         public IActionResult GetTelephone(int telephone)
         {
@@ -72,7 +76,13 @@ namespace Booking.Controllers
 
             /*GetBookingFromDB(sql);*/
         }
-
+        /// <summary>
+        /// Helped Method for Get by telephone
+        /// 
+        /// this method gets take a sql query and sort it 
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <returns></returns>
         private List<BookingModel> GetBookingFromDB(string sql)
         {
             var BookList = new List<BookingModel>();
