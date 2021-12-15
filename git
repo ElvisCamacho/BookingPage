@@ -1,0 +1,25 @@
+[33mcommit 00dc32de61e8a3131e7e6f0f5c60f8f9d1c42480[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: camachocv@hotmail.com <elvi0506@edu.easj.dk>
+Date:   Wed Dec 15 10:18:24 2021 +0100
+
+    get by tel
+
+[33mcommit b35bbf0bcb4a1d30e1d7f3525632554ddc2d5957[m
+Author: camachocv@hotmail.com <elvi0506@edu.easj.dk>
+Date:   Wed Dec 15 10:12:48 2021 +0100
+
+    GET done
+    GET by Telehone done
+    POST done
+
+[33mcommit c1ab306fb86c2bb3abbb25baca3ede4436d9498c[m
+Author: camachocv@hotmail.com <elvi0506@edu.easj.dk>
+Date:   Mon Dec 13 15:33:32 2021 +0100
+
+    Add project files.
+
+[33mcommit a2c3eda4db363e021b8933bf212d0cddb713cd62[m
+Author: camachocv@hotmail.com <elvi0506@edu.easj.dk>
+Date:   Mon Dec 13 15:33:30 2021 +0100
+
+    Add .gitignore and .gitattributes.
