@@ -4,14 +4,12 @@
         <name>Booking</name>
     </assembly>
     <members>
-        <member name="P:Booking.Model.BookingModel.Id">
+        <member name="F:Booking.Controllers.BookingController.ConnectionString">
             <summary>
-            PROPERTIES
-            </summary>
-            <summary>
-            Booking Id
+            ConnectionString - connects the controllers to DB
             </summary>
         </member>
+        <!-- Badly formed XML comment ignored for member "M:Booking.Controllers.BookingController.Get" -->
         <member name="P:Booking.Model.BookingModel.Name">
             <summary>
             Client Name
@@ -37,7 +35,7 @@
             Eventual Notes
             </summary>
         </member>
-        <member name="M:Booking.Model.BookingModel.#ctor">
+        <member name="M:Booking.Model.BookingModel.#ctor(System.Int32)">
             <summary>
             default constructor
             </summary>

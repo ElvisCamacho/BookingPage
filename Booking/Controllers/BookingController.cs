@@ -12,11 +12,16 @@ namespace Booking.Controllers
     [ApiController]
     public class BookingController : ControllerBase
     {
-
+        /// <summary>
+        /// ConnectionString - connects the controllers to DB
+        /// </summary>
         const string ConnectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=BookingDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
 
-        // GET: api/<ValuesController>
+        /// <summary>
+        /// GET: api/<ValuesController>
+        /// </summary>
+        /// <returns> returns DB as a list</returns>
         [HttpGet]
         public IEnumerable<BookingModel> Get()
         {
@@ -25,7 +30,6 @@ namespace Booking.Controllers
             List<BookingModel> DBList = new List<BookingModel>();
 
             String selectAllDB = "Select * from booking";
-
             using (SqlConnection dataBaseConnection = new SqlConnection(ConnectionString))
             {
                 dataBaseConnection.Open();
@@ -48,16 +52,72 @@ namespace Booking.Controllers
                     }
                 }
             }
-
             return DBList;
         }
 
-        // GET api/<ValuesController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+
+        /// <summary>
+        /// GET: api/telephone/2200223
+        /// </summary>
+        /// <param name="telephone"></param>
+        /// <returns> Sorted Sql query</returns>
+       
+        [HttpGet("telephone/{telephone}", Name = "GetbyTelephone")]
+        public IActionResult GetTelephone(int telephone)
         {
-            return "value";
+            string sql = $"select name, telephone, email, date, note from booking where telephone = '{telephone}'";
+
+            var Db = GetBookingFromDB(sql);
+            if (Db != null)
+            {
+                return Ok(Db);
+            }
+            return NotFound(new { message = "Data Not Found" });
+
+            /*GetBookingFromDB(sql);*/
         }
+        /// <summary>
+        /// Helped Method for Get by telephone
+        /// 
+        /// this method gets take a sql query and sort it 
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <returns></returns>
+        private List<BookingModel> GetBookingFromDB(string sql)
+        {
+            var BookList = new List<BookingModel>();
+
+            using (SqlConnection databaseConnection = new SqlConnection(ConnectionString))
+            {
+                using (SqlCommand sqlCommand = new SqlCommand(sql, databaseConnection))
+                {
+                    databaseConnection.Open();
+
+                    using (SqlDataReader reader = sqlCommand.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+
+                            // if u need to combine tables on DB we need other type of 
+                            string name = reader.GetString(0);
+                            int telephone = reader.GetInt32(1);
+                            string email = reader.GetString(2);
+                            DateTime date = reader.GetDateTime(3);
+                            string note = reader.GetString(4);
+
+                            BookList.Add(new BookingModel(name, telephone, email, date, note));
+
+                        }
+
+                    }
+                }
+            }
+
+            return BookList;
+        }
+
+
+
 
 
          // GET: api/Cars/5
