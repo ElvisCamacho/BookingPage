@@ -12,8 +12,8 @@ namespace Booking.Model
         /// <summary>
         /// Booking Id
         /// </summary>
-        [Required]
-        public int Id { get; set; }
+        //[Required]
+        //public int Id { get; set; }
         /// <summary>
         /// Client Name
         /// </summary>
@@ -48,7 +48,10 @@ namespace Booking.Model
         /// <summary>
         /// default constructor
         /// </summary>
-        public BookingModel() { }
+        public BookingModel(int telephone)
+        {
+            Telephone = telephone;
+        }
 
         /// <summary>
         /// constroctor with initialization
@@ -72,7 +75,7 @@ namespace Booking.Model
 
         public override string ToString()
         {
-            return $"ID:{Id}, Name: {Name}, Tel.: {Telephone}, Email: {Email}, Note: {Note}, dayOfWeek: {Date}";
+            return $"Name: {Name}, Tel.: {Telephone}, Email: {Email}, Note: {Note}, dayOfWeek: {Date}";
         }
 
 
