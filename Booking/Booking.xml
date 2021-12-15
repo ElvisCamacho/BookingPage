@@ -10,6 +10,22 @@
             </summary>
         </member>
         <!-- Badly formed XML comment ignored for member "M:Booking.Controllers.BookingController.Get" -->
+        <member name="M:Booking.Controllers.BookingController.GetTelephone(System.Int32)">
+            <summary>
+            GET: api/telephone/2200223
+            </summary>
+            <param name="telephone"></param>
+            <returns> Sorted Sql query</returns>
+        </member>
+        <member name="M:Booking.Controllers.BookingController.GetBookingFromDB(System.String)">
+            <summary>
+            Helped Method for Get by telephone
+            
+            this method gets take a sql query and sort it 
+            </summary>
+            <param name="sql"></param>
+            <returns></returns>
+        </member>
         <member name="P:Booking.Model.BookingModel.Name">
             <summary>
             Client Name

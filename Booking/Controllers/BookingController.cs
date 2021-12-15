@@ -117,59 +117,6 @@ namespace Booking.Controllers
         }
 
 
-
-
-
-         // GET: api/Cars/5
-        [HttpGet("telephone/{telephone}", Name = "GetbyTelephone")]
-        public IActionResult GetTelephone(int telephone)
-        {
-            string sql = $"select name, telephone, email, date, note from booking where telephone = '{telephone}'";
-
-            var Db = GetBookingFromDB(sql);
-            if (Db != null)
-            {
-                return Ok(Db);
-            }
-            return NotFound(new { message = "Data Not Found" });
-
-            /*GetBookingFromDB(sql);*/
-        }
-
-        private List<BookingModel> GetBookingFromDB(string sql)
-        {
-            var BookList = new List<BookingModel>();
-
-            using (SqlConnection databaseConnection = new SqlConnection(ConnectionString))
-            {
-                using (SqlCommand sqlCommand = new SqlCommand(sql, databaseConnection))
-                {
-                    databaseConnection.Open();
-
-                    using (SqlDataReader reader = sqlCommand.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-
-                            // if u need to combine tables on DB we need other type of 
-                            string name = reader.GetString(0);
-                            int telephone = reader.GetInt32(1);
-                            string email = reader.GetString(2);
-                            DateTime date = reader.GetDateTime(3);
-                            string note = reader.GetString(4);
-
-                            BookList.Add(new BookingModel(name, telephone, email, date, note));
-
-                        }
-
-                    }
-                }
-            }
-
-            return BookList;
-        }
-
-
         // POST api/<ValuesController>
         [HttpPost]
         public void Post([FromBody] BookingModel value)
@@ -194,6 +141,7 @@ namespace Booking.Controllers
             }
 
         }
+
 
         // PUT api/<ValuesController>/5
         [HttpPut("{id}")]
