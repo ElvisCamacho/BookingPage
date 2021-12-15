@@ -26,6 +26,14 @@
             <param name="sql"></param>
             <returns></returns>
         </member>
+        <member name="P:Booking.Model.BookingModel.Id">
+            <summary>
+            PROPERTIES
+            </summary>
+            <summary>
+            Booking Id
+            </summary>
+        </member>
         <member name="P:Booking.Model.BookingModel.Name">
             <summary>
             Client Name

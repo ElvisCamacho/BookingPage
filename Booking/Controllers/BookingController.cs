@@ -61,7 +61,7 @@ namespace Booking.Controllers
         /// </summary>
         /// <param name="telephone"></param>
         /// <returns> Sorted Sql query</returns>
-       
+
         [HttpGet("telephone/{telephone}", Name = "GetbyTelephone")]
         public IActionResult GetTelephone(int telephone)
         {
@@ -129,7 +129,7 @@ namespace Booking.Controllers
                 dataBaseConnection.Open();
                 using (SqlCommand insertCommand = new SqlCommand(insertSql, dataBaseConnection))
                 {
-                    //insertCommand.Parameters.AddWithValue("@id", value.ID);
+                    //insertCommand.Parameters.AddWithValue("@id", value.Id);
                     insertCommand.Parameters.AddWithValue("@name", value.Name);
                     insertCommand.Parameters.AddWithValue("@telephone", value.Telephone);
                     insertCommand.Parameters.AddWithValue("@email", value.Email);
@@ -150,14 +150,25 @@ namespace Booking.Controllers
         }
 
         // DELETE api/<ValuesController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("{telephone}")]
+        public void Delete(int telephone)
         {
+            string query = "delete from booking where telephone=@telephone";
+            using (SqlConnection dataBaseConnection = new SqlConnection(ConnectionString))
+            {
+                dataBaseConnection.Open();
+                using (SqlCommand insertCommand = new SqlCommand(query, dataBaseConnection))
+                {
+                    insertCommand.Parameters.AddWithValue("@telephone", telephone);
+                    var rowsAffected = insertCommand.ExecuteNonQuery();
+                }
+            }
         }
 
         public BookingController()
         {
 
         }
+
     }
 }

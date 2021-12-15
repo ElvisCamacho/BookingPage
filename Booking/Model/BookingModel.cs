@@ -12,8 +12,8 @@ namespace Booking.Model
         /// <summary>
         /// Booking Id
         /// </summary>
-        //[Required]
-        //public int Id { get; set; }
+        [Required]
+        public int Id { get; set; }
         /// <summary>
         /// Client Name
         /// </summary>
