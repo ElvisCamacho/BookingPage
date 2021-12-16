@@ -48,9 +48,9 @@ namespace Booking.Model
         /// <summary>
         /// default constructor
         /// </summary>
-        public BookingModel(int telephone)
+        public BookingModel()
         {
-            Telephone = telephone;
+           
         }
 
         /// <summary>

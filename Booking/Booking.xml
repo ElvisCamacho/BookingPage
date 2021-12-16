@@ -59,7 +59,7 @@
             Eventual Notes
             </summary>
         </member>
-        <member name="M:Booking.Model.BookingModel.#ctor(System.Int32)">
+        <member name="M:Booking.Model.BookingModel.#ctor">
             <summary>
             default constructor
             </summary>

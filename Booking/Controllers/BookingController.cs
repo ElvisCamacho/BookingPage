@@ -144,10 +144,27 @@ namespace Booking.Controllers
 
 
         // PUT api/<ValuesController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut("{telephone}")]
+        public void Put(int telephone, [FromBody] BookingModel value)
         {
+            string query = "Update booking set name=@name, telephone=@telephone, email=@email, date=@date, note=@note where telephone=@telephone";
+            using (SqlConnection conn = new SqlConnection(ConnectionString))
+            {
+                conn.Open();
+                SqlCommand command = new SqlCommand(query, conn);
+                command.Parameters.AddWithValue("@name", value.Name);
+                command.Parameters.AddWithValue("@telephone", value.Telephone);
+                command.Parameters.AddWithValue("@email", value.Email);
+                command.Parameters.AddWithValue("@date", value.Date);
+                command.Parameters.AddWithValue("@note", value.Note);
+                int affectedRows = command.ExecuteNonQuery();
+
+            }
+
         }
+
+
+
 
         // DELETE api/<ValuesController>/5
         [HttpDelete("{telephone}")]
