@@ -12,7 +12,7 @@
         <!-- Badly formed XML comment ignored for member "M:Booking.Controllers.BookingController.Get" -->
         <member name="M:Booking.Controllers.BookingController.GetTelephone(System.Int32)">
             <summary>
-            GET: api/telephone/2200223
+            GET: api/telephone/
             </summary>
             <param name="telephone"></param>
             <returns> Sorted Sql query</returns>

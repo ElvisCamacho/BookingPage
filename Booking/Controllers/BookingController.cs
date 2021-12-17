@@ -57,7 +57,7 @@ namespace Booking.Controllers
 
 
         /// <summary>
-        /// GET: api/telephone/2200223
+        /// GET: api/telephone/
         /// </summary>
         /// <param name="telephone"></param>
         /// <returns> Sorted Sql query</returns>
@@ -83,7 +83,7 @@ namespace Booking.Controllers
         /// </summary>
         /// <param name="sql"></param>
         /// <returns></returns>
-        private List<BookingModel> GetBookingFromDB(string sql)
+        public List<BookingModel> GetBookingFromDB(string sql)
         {
             var BookList = new List<BookingModel>();
 

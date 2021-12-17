@@ -1,6 +1,7 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Booking.Controllers;
 using Booking.Model;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -15,11 +16,10 @@ namespace MSTest_BookingPage
         public void TestForSuccesfulObjCreation()
         {
             //act
-            BookingModel b = new BookingModel("hans", 5555, "hans", DateTime.Today, "hans");
+            BookingModel b = new BookingModel("hans", 44445555, "hans", DateTime.Today, "hans");
 
             //assert
-            Assert.AreEqual("Name: hans, Tel.: 5555, Email: hans, dayOfWeek: 17-Dec-21 00:00:00, Note: hans", b.ToString());
-
+            Assert.AreEqual("Name: hans, Tel.: 44445555, Email: hans, dayOfWeek: 17-Dec-21 00:00:00, Note: hans", b.ToString());
         }
 
         [TestMethod]
@@ -47,15 +47,13 @@ namespace MSTest_BookingPage
         {
             //................Act............
 
-            var expected = FakeBookingData();
-            // fake data from  own unit test class
+            var expected = FakeBookingData(); // fake data from  own unit test class
             var controller = new BookingController();
 
             // .............Arrange........and  define a type which you get the object
             var result = controller.Get() as List<BookingModel>;
 
             //............Asset..............
-            //Assert.IsNotNull(expected);
             Assert.AreEqual(expected[0].Name, result[0].Name);
             Assert.AreEqual(expected[0].Telephone, result[0].Telephone);
             Assert.AreEqual(expected[0].Email, result[0].Email);
@@ -64,11 +62,10 @@ namespace MSTest_BookingPage
 
         }
 
-         [TestMethod]
+        [TestMethod]
         public void AssertNotNullResult()
         {
             //................Act............
-
             var expected = FakeBookingData();
             // fake data from  own unit test class
             var controller = new BookingController();
@@ -88,15 +85,114 @@ namespace MSTest_BookingPage
             List<BookingModel> booking = new List<BookingModel>
             {
                 new BookingModel("Elvis", 83483483,"camachocv@hotmail.com", DateTime.Parse("12.jan.21"),  "lsdihflsahd"),
-                new BookingModel("Muhanad", 834834834,"camachocv@hotmail.com", DateTime.Parse("12.jan.21"),  "lsdihflsahd")
+                new BookingModel("Muhanad", 83483434,"camachocv@hotmail.com", DateTime.Parse("12.jan.21"),  "lsdihflsahd")
             };
             return booking;
         }
-       // ********* about tests are on git - all passed ***************
+
+        // ********* about tests are on git - all passed ***************
+
+
+        [TestMethod]
+        public void GetTheRightNumberLength()
+        {
+            var expected = FakeBookingData();
+            string newString = expected[0].Telephone.ToString();
+
+            var controller = new BookingController();
+            var result = controller.Get() as List<BookingModel>;
+            var stringResult = result[0].Telephone.ToString();
+
+            var actual = result;
+            Assert.AreEqual(newString.Length, stringResult.Length);
+
+        }
+
+        [TestMethod]
+        public void Incorrect_TelephoneNummer()
+        {
+            BookingModel book = new BookingModel();
+
+            try
+            {
+                book.Telephone = 1234567;
+            }
+
+            catch (System.ArgumentOutOfRangeException)
+            {
+                return;
+            }
+
+            Assert.Fail();
+        }
+
+
+        [TestMethod]
+        public void GetByTelephoneNumber()
+        {
+            var controller = new BookingController();
+
+            // .............Arrange........and  define a type which you get the object
+            var Getbyphone = controller.GetTelephone(3483483) as OkObjectResult;
+
+            //............Asset..............
+            Assert.IsNotNull(Getbyphone);
+
+        }
+
+        [TestMethod]
+        public void Should_GetBookingFromDB()
+        {
+            //................Act............
+            BookingController ex = new BookingController();
+            // fake data from  own unit test class
+
+            // .............Arrange...........
+            // loading data from controler methods
+            var newee = ex.GetBookingFromDB($"select name, telephone, email, date, note from booking where telephone=telephone");
+            // problem on run time
+
+            //............Asset..............
+
+            Assert.IsNotNull(newee);
+        }
+
+        //[TestMethod]
+        //public void Test_PostControler()
+        //{
+
+
+        //    var p = new BookingModel()
+        //    {
+        //        Id = 12,
+        //        Name = "Elvis",
+        //        Telephone = 83483483,
+        //        Email = "camachocv@hotmail.com",
+        //        Date = DateTime.Parse("12.jan.21"),
+        //        Note = "lsdihflsahd"
+        //    };
+
+        //    BookingController controller = new BookingController();
+
+        //    //Act
+        //    IHttpActionResult  cc = controller.Post(BookingModel
+        //    {
+        //        Id = 12,
+        //        Name = "Elvis",
+        //        Telephone = 83483483,
+        //        Email = "camachocv@hotmail.com",
+        //        Date = DateTime.Parse("12.jan.21"),
+        //        Note = "lsdihflsahd"
+        //    });
+        //    var cc = createdResult   as CreatedAtRouteNegotiatedContentResult<Boo>;
+
+        //    //Assert
+        //    Assert.AreEqual(response.StatusCode, 201);
+
+        //}
 
 
 
 
     }
 }
-   
