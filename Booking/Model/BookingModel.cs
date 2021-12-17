@@ -19,11 +19,30 @@ namespace Booking.Model
         /// </summary>
         [Required]
         public string Name { get; set; }
+        
         /// <summary>
-        /// Client number
+        /// Client number. It had to be 8 number according with danish numbers
         /// </summary>
+        /// 
+        private int _telephone;
         [Required]
-        public int Telephone { get; set; }
+        public int Telephone
+        {
+            get
+            {
+                return _telephone;
+                //_telephone.ToString();
+            }
+            set
+            {
+                string newS = value.ToString();
+                if (newS.Length == 8)
+                {
+                    _telephone = value;
+                }
+                else { throw new ArgumentOutOfRangeException("Telefone nummer har 8 nummer, tak 😋 "); }
+            }
+        }
         /// <summary>
         /// Client's Email
         /// </summary>
@@ -50,7 +69,7 @@ namespace Booking.Model
         /// </summary>
         public BookingModel()
         {
-           
+
         }
 
         /// <summary>

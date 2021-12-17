@@ -92,9 +92,9 @@ namespace MSTest_BookingPage
             };
             return booking;
         }
-
-
        // ********* about tests are on git - all passed ***************
+
+
 
 
     }

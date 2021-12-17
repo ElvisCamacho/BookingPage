@@ -39,10 +39,11 @@
             Client Name
             </summary>
         </member>
-        <member name="P:Booking.Model.BookingModel.Telephone">
+        <member name="F:Booking.Model.BookingModel._telephone">
             <summary>
-            Client number
+            Client number. It had to be 8 number according with danish numbers
             </summary>
+            
         </member>
         <member name="P:Booking.Model.BookingModel.Email">
             <summary>
