@@ -75,7 +75,7 @@ namespace Booking.Model
 
         public override string ToString()
         {
-            return $"Name: {Name}, Tel.: {Telephone}, Email: {Email}, Note: {Note}, dayOfWeek: {Date}";
+            return $"Name: {Name}, Tel.: {Telephone}, Email: {Email}, dayOfWeek: {Date}, Note: {Note}";
         }
 
 
