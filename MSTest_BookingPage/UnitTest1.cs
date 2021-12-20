@@ -90,26 +90,23 @@ namespace MSTest_BookingPage
             return booking;
         }
 
-        // ********* about tests are on git - all passed ***************
-
 
         [TestMethod]
         public void GetTheRightNumberLength()
         {
             var expected = FakeBookingData();
-            string newString = expected[0].Telephone.ToString();
+            string expectedTelephoneLength = expected[0].Telephone.ToString();
 
             var controller = new BookingController();
             var result = controller.Get() as List<BookingModel>;
-            var stringResult = result[0].Telephone.ToString();
+            var telephoneLenght = result[0].Telephone.ToString();
 
-            var actual = result;
-            Assert.AreEqual(newString.Length, stringResult.Length);
+            Assert.AreEqual(expectedTelephoneLength.Length, telephoneLenght.Length);
 
         }
 
         [TestMethod]
-        public void Incorrect_TelephoneNummer()
+        public void Incorrect_Telephone_Length()
         {
             BookingModel book = new BookingModel();
 
@@ -149,12 +146,12 @@ namespace MSTest_BookingPage
 
             // .............Arrange...........
             // loading data from controler methods
-            var newee = ex.GetBookingFromDB($"select name, telephone, email, date, note from booking where telephone=telephone");
+            var newObj = ex.GetBookingFromDB($"select name, telephone, email, date, note from booking where telephone=telephone");
             // problem on run time
 
             //............Asset..............
 
-            Assert.IsNotNull(newee);
+            Assert.IsNotNull(newObj);
         }
 
         //[TestMethod]

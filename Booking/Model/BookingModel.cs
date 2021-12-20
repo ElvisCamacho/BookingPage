@@ -21,7 +21,10 @@ namespace Booking.Model
         public string Name { get; set; }
         
         /// <summary>
-        /// Client number. It had to be 8 number according with danish numbers
+        /// 
+        /// Client number. It has to be 8 number according with danish telephone numbers.
+        /// This will prevent from people to write more or less than 8 numbers
+        /// 
         /// </summary>
         /// 
         private int _telephone;

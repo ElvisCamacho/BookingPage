@@ -57,7 +57,7 @@ namespace Booking.Controllers
 
 
         /// <summary>
-        /// GET: api/telephone/
+        /// GET: api/telephone/{telephone}
         /// </summary>
         /// <param name="telephone"></param>
         /// <returns> Sorted Sql query</returns>
@@ -73,13 +73,14 @@ namespace Booking.Controllers
                 return Ok(Db);
             }
             return NotFound(new { message = "Data Not Found" });
-
-            /*GetBookingFromDB(sql);*/
         }
         /// <summary>
-        /// Helped Method for Get by telephone
         /// 
-        /// this method gets take a sql query and sort it 
+        /// Helped Method - GetBTelephone
+        /// This method will help the admin to sort clients by their elephone number. 
+        /// The Admin or the employee will make a shearch with the clients telefone number 
+        /// to get all information about the client
+        /// 
         /// </summary>
         /// <param name="sql"></param>
         /// <returns></returns>
@@ -92,13 +93,10 @@ namespace Booking.Controllers
                 using (SqlCommand sqlCommand = new SqlCommand(sql, databaseConnection))
                 {
                     databaseConnection.Open();
-
                     using (SqlDataReader reader = sqlCommand.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-
-                            // if u need to combine tables on DB we need other type of 
                             string name = reader.GetString(0);
                             int telephone = reader.GetInt32(1);
                             string email = reader.GetString(2);
@@ -112,7 +110,6 @@ namespace Booking.Controllers
                     }
                 }
             }
-
             return BookList;
         }
 
