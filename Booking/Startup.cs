@@ -1,17 +1,9 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Booking
 {
@@ -24,13 +16,34 @@ namespace Booking
 
         public IConfiguration Configuration { get; }
 
-             // This method gets called by the runtime. Use this method to add services to the container.
+        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-           //  services.AddDbContext<BookingContext>(options =>
-           //options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            // **************** Adding Cors - Elvis  ************
+            services.AddCors(options =>
+            {
+                // 1st policy --> allow specific Origin
+                options.AddPolicy("AllowSpecificOrigin",
+                    builder => { builder.WithOrigins("https://localhost:44342/api/booking").AllowAnyMethod().AllowAnyHeader(); });
 
-           // services.AddControllersWithViews();
+                // 2st policy --> allow any Origins
+
+                options.AddPolicy("AllowAnyOrigin",
+                    builder => builder.AllowAnyOrigin().
+                        AllowAnyMethod().
+                        AllowAnyHeader());
+
+                // 3st policy --> allow specific Origins only Get & Post
+                options.AddPolicy("AllowAnyOriginGetPost",
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin().WithMethods("GET", "PUT").AllowAnyHeader();
+                    });
+
+
+                options.AddPolicy("AccessControlAllowOrigin",
+                    builder => builder.AllowAnyOrigin());
+            });
 
 
 
@@ -51,6 +64,7 @@ namespace Booking
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Booking v1"));
             }
+            app.UseCors("AllowAnyOrigin");
 
             app.UseHttpsRedirection();
 

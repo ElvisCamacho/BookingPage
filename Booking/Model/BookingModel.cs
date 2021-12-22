@@ -54,7 +54,7 @@ namespace Booking.Model
         /// <summary>
         /// Date of the booking 
         /// </summary>
-        [Required]
+        //[Required]
         public DateTime Date { get; set; }
         /// <summary>
         /// Eventual Notes
@@ -95,6 +95,11 @@ namespace Booking.Model
             //Time = time;
         }
 
+
+        /// <summary>
+        /// Override ToString method
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return $"Name: {Name}, Tel.: {Telephone}, Email: {Email}, dayOfWeek: {Date}, Note: {Note}";

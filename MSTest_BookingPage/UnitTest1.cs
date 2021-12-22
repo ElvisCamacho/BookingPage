@@ -1,3 +1,4 @@
+using Azure;
 using Booking.Controllers;
 using Booking.Model;
 using Microsoft.AspNetCore.Mvc;
@@ -12,6 +13,9 @@ namespace MSTest_BookingPage
     [TestClass]
     public class UnitTest1
     {
+        /// <summary>
+        /// testing full object criation
+        /// </summary>
         [TestMethod]
         public void TestForSuccesfulObjCreation()
         {
@@ -22,6 +26,9 @@ namespace MSTest_BookingPage
             Assert.AreEqual("Name: hans, Tel.: 44445555, Email: hans, dayOfWeek: 17-Dec-21 00:00:00, Note: hans", b.ToString());
         }
 
+        /// <summary>
+        /// return all booking From DB
+        /// </summary>
         [TestMethod]
         public void shouldReturnAllBooking()
         {
@@ -41,7 +48,11 @@ namespace MSTest_BookingPage
             Assert.IsNotNull(controller);
         }
 
-
+        /// <summary>
+        /// Comparing the real data from DB with a fake data
+        /// however the fake data is the same as the DB. 
+        /// so we compare that we are getting the right data from Db
+        /// </summary>
         [TestMethod]
         public void CompareRealDataFromDB_with_fakeBookingData()
         {
@@ -62,6 +73,9 @@ namespace MSTest_BookingPage
 
         }
 
+        /// <summary>
+        /// Asser not null Result
+        /// </summary>
         [TestMethod]
         public void AssertNotNullResult()
         {
@@ -80,17 +94,24 @@ namespace MSTest_BookingPage
         }
 
 
+        /// <summary>
+        /// fake data -  helper method from test
+        /// </summary>
+        /// <returns></returns>
         public List<BookingModel> FakeBookingData()
         {
             List<BookingModel> booking = new List<BookingModel>
             {
-                new BookingModel("Elvis", 83483483,"camachocv@hotmail.com", DateTime.Parse("12.jan.21"),  "lsdihflsahd"),
+                new BookingModel("Muhanad", 83483483,"camachocv@hotmail.com", DateTime.Parse("12.jan.21"),  "lsdihflsahd"),
                 new BookingModel("Muhanad", 83483434,"camachocv@hotmail.com", DateTime.Parse("12.jan.21"),  "lsdihflsahd")
             };
             return booking;
         }
 
 
+        /// <summary>
+        /// testing if we are getting the write number length from DB
+        /// </summary>
         [TestMethod]
         public void GetTheRightNumberLength()
         {
@@ -105,6 +126,10 @@ namespace MSTest_BookingPage
 
         }
 
+
+        /// <summary>
+        /// testing if the client imput have from length 
+        /// </summary>
         [TestMethod]
         public void Incorrect_Telephone_Length()
         {
@@ -124,6 +149,9 @@ namespace MSTest_BookingPage
         }
 
 
+        /// <summary>
+        /// Getting the write number from DB
+        /// </summary>
         [TestMethod]
         public void GetByTelephoneNumber()
         {
@@ -137,6 +165,9 @@ namespace MSTest_BookingPage
 
         }
 
+        /// <summary>
+        /// Get all booking from DB
+        /// </summary>
         [TestMethod]
         public void Should_GetBookingFromDB()
         {
@@ -172,19 +203,21 @@ namespace MSTest_BookingPage
         //    BookingController controller = new BookingController();
 
         //    //Act
-        //    IHttpActionResult  cc = controller.Post(BookingModel
-        //    {
-        //        Id = 12,
-        //        Name = "Elvis",
-        //        Telephone = 83483483,
-        //        Email = "camachocv@hotmail.com",
-        //        Date = DateTime.Parse("12.jan.21"),
-        //        Note = "lsdihflsahd"
-        //    });
-        //    var cc = createdResult   as CreatedAtRouteNegotiatedContentResult<Boo>;
+        //    //IHttpActionResult cc = controller.Post(BookingModel
+        //    //{
+        //    //    Id = 12,
+        //    //    Name = "Elvis",
+        //    //    Telephone = 83483483,
+        //    //    Email = "camachocv@hotmail.com",
+        //    //    Date = DateTime.Parse("12.jan.21"),
+        //    //    Note = "lsdihflsahd"
+        //    //});
+
+
+        //    var cc = controller.Post(p);
 
         //    //Assert
-        //    Assert.AreEqual(response.StatusCode, 201);
+        //    Assert.AreEqual();
 
         //}
 

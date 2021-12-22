@@ -12,19 +12,30 @@
         <!-- Badly formed XML comment ignored for member "M:Booking.Controllers.BookingController.Get" -->
         <member name="M:Booking.Controllers.BookingController.GetTelephone(System.Int32)">
             <summary>
-            GET: api/telephone/
+            GET: api/telephone/{telephone}
             </summary>
             <param name="telephone"></param>
             <returns> Sorted Sql query</returns>
         </member>
         <member name="M:Booking.Controllers.BookingController.GetBookingFromDB(System.String)">
             <summary>
-            Helped Method for Get by telephone
             
-            this method gets take a sql query and sort it 
+            Helped Method - GetBTelephone
+            This method will help the admin to sort clients by their elephone number. 
+            The Admin or the employee will make a shearch with the clients telefone number 
+            to get all information about the client
+            
             </summary>
             <param name="sql"></param>
             <returns></returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Booking.Controllers.BookingController.Post(Booking.Model.BookingModel)" -->
+        <!-- Badly formed XML comment ignored for member "M:Booking.Controllers.BookingController.Put(System.Int32,Booking.Model.BookingModel)" -->
+        <!-- Badly formed XML comment ignored for member "M:Booking.Controllers.BookingController.Delete(System.Int32)" -->
+        <member name="M:Booking.Controllers.BookingController.#ctor">
+            <summary>
+            Default Controler
+            </summary>
         </member>
         <member name="P:Booking.Model.BookingModel.Id">
             <summary>
@@ -41,7 +52,10 @@
         </member>
         <member name="F:Booking.Model.BookingModel._telephone">
             <summary>
-            Client number. It had to be 8 number according with danish numbers
+            
+            Client number. It has to be 8 number according with danish telephone numbers.
+            This will prevent from people to write more or less than 8 numbers
+            
             </summary>
             
         </member>
@@ -76,6 +90,12 @@
             <param name="date"></param>
             <param name="note"></param>
             <param name="time"></param>
+        </member>
+        <member name="M:Booking.Model.BookingModel.ToString">
+            <summary>
+            Override ToString method
+            </summary>
+            <returns></returns>
         </member>
     </members>
 </doc>

@@ -25,8 +25,6 @@ namespace Booking.Controllers
         [HttpGet]
         public IEnumerable<BookingModel> Get()
         {
-            //return new string[] { "Sara", "Muhanad" };
-
             List<BookingModel> DBList = new List<BookingModel>();
 
             String selectAllDB = "Select * from booking";
@@ -61,7 +59,6 @@ namespace Booking.Controllers
         /// </summary>
         /// <param name="telephone"></param>
         /// <returns> Sorted Sql query</returns>
-
         [HttpGet("telephone/{telephone}", Name = "GetbyTelephone")]
         public IActionResult GetTelephone(int telephone)
         {
@@ -74,6 +71,7 @@ namespace Booking.Controllers
             }
             return NotFound(new { message = "Data Not Found" });
         }
+
         /// <summary>
         /// 
         /// Helped Method - GetBTelephone
@@ -113,8 +111,10 @@ namespace Booking.Controllers
             return BookList;
         }
 
-
-        // POST api/<ValuesController>
+        /// <summary>
+        ///  POST api/<ValuesController>
+        /// </summary>
+        /// <param name="value"></param>
         [HttpPost]
         public void Post([FromBody] BookingModel value)
         {
@@ -135,12 +135,15 @@ namespace Booking.Controllers
                     var rowsAffected = insertCommand.ExecuteNonQuery();
                     Console.WriteLine($"Rows affected: {rowsAffected}");
                 }
-            }
+            } //return null; // this is to use IactionResult
 
         }
 
-
-        // PUT api/<ValuesController>/5
+        /// <summary>
+        ///  PUT api/<ValuesController>/5
+        /// </summary>
+        /// <param name="telephone"></param>
+        /// <param name="value"></param>
         [HttpPut("{telephone}")]
         public void Put(int telephone, [FromBody] BookingModel value)
         {
@@ -160,10 +163,10 @@ namespace Booking.Controllers
 
         }
 
-
-
-
-        // DELETE api/<ValuesController>/5
+        /// <summary>
+        /// DELETE api/<ValuesController>/5
+        /// </summary>
+        /// <param name="telephone"></param>
         [HttpDelete("{telephone}")]
         public void Delete(int telephone)
         {
@@ -177,12 +180,13 @@ namespace Booking.Controllers
                     var rowsAffected = insertCommand.ExecuteNonQuery();
                 }
             }
+           // return null;
         }
 
-        public BookingController()
-        {
-
-        }
+        /// <summary>
+        /// Default Controler
+        /// </summary>
+        public BookingController() { }
 
     }
 }
